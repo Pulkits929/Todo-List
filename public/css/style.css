@@ -4,7 +4,7 @@ body{
     
 }
 .bgimg {
-    background-image: url("/images/wallpaperflare.com_wallpaper (1).jpg");
+    background-image: url("/images/pexels-jplenio-1103970.jpg");
     background-position: center;
     background-size: cover;
     min-height: 100vh;
@@ -34,10 +34,13 @@ button {
   width: 60px;
   height: 40px;
   background-color: #00000034;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
 }
   
   
@@ -50,6 +53,8 @@ button {
     min-height: 50px;
     margin-bottom: 10px;
     align-items: center;
+    justify-content: space-between;
+
 }
     
 .item-row p {
@@ -69,26 +74,44 @@ h4{
   color: red;
   
 }
-/* button.delete-todo {
-  background-color: #8a2be2; 
-  color: white;
-  border: none;
-  padding: 8px 12px;
+
+input[type="text"],
+select {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  display: flex;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+
+.low{
+  color: green;
+}
+.medium{
+  color: yellow;
+}
+.high{
+  color: red;
+}
+
+.del_todo{
+  margin-left: 10px;
   align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s, transform 0.2s;
+  width: auto;
+  height: auto;
 }
 
-button.delete-todo:hover {
-  background-color: #6c22c2; 
-  transform: scale(1.05);
+h1{
+  margin-bottom: 30px;
 }
 
-button.delete-todo ion-icon {
-  font-size: 18px;
-} */
-
+.submit{
+  margin-top: 10px;
+}
+.edit{
+  height: auto;
+  width: auto;
+  margin-left: 20px;
+}

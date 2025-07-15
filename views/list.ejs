@@ -11,27 +11,80 @@
         
         <div class="box first">
             <h1>To Do list</h1>
+            
         </div>
         <div class="box">
             <% if(ejes.length == 0){ %>
                 <h4>Enter Task!!!</h4>
             <% } %>
             <% ejes.forEach(function(Item){ %>
-                <form action="/delete" method="post">
+                
                     <div class="item-row border-bottom">
-                        <input type="checkbox" name="del_todo" value="<%= Item._id %>" class="task-checkbox" onchange="this.form.submit()">
-                        <p class="task-text"><%= Item.name %></p>
+                        <form action="/update" method="post">
+                        <div class="item-row">
+                            <input type="checkbox" id="task-checkbox"  class="task-checkbox" >
+                            <p id="task-text" class="task-text"><%= Item.name %></p>
+
+                            <input class="task-edit" name="task_edit" type="text" placeholder="<%= Item.name %>" style="display: none;" required>
+                            <button class="task_edit_btn" name="task_edit_btn" value="<%= Item._id %>" type="submit" style="display: none;" onclick="toggleShow(this)"></button>
+
+                            <button id="edit" class="edit" onclick="toggleEdit(this)"><ion-icon name="create-outline"></ion-icon></button>
+                        </div>
+                        </form>
+
+                        <form action="/delete" method="post">
+                        <div class="item-row priority-style <%= Item.priority.toLowerCase() %>">
+                            <p class="task-text"><%= Item.priority %></p>
+                            <button class="del_todo" name="del_todo" value="<%= Item._id %>" type="submit"><ion-icon name="trash-outline"></ion-icon></button>
+                        </div>
+                        </form>
+
                     </div>
-                </form>
+                
             <% }) %>
             
-
             <form action="/" method="post">
-                <input type="text" name="ele1" placeholder="Enter the task...">
-                <button type="submit">+</button>
+                <div class="adding-task"></div>
+                <input type="text" name="ele1" placeholder="Enter the task..." required>
+                <label for="priority">Select Priority:</label>
+                
+                <select name="priority" id="priority" required>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+
+                <button class="submit" type="submit">+</button>
+            </div>
             </form>
+            
         </div>
+
+        <script>
+            function hide(){
+                document.getElementById("task-checkbox").style.display="none";
+                document.getElementById("task-text").style.display="none";
+                document.getElementById("edit").style.display="none";
+            }
+            function toggleEdit(button){
+                const container = button.closest(".item-row");
+                const checkbox = container.querySelector(".task-checkbox");
+                const text = container.querySelector(".task-text");
+                const edit_btn = container.querySelector(".edit");
+                const input = container.querySelector(".task-edit");
+                const input_btn = container.querySelector(".task_edit_btn");
+
+                checkbox.style.display="none";
+                text.style.display="none";
+                edit_btn.style.display="none";
+
+                input.style.display="flex";
+                input_btn.style.display="flex";
+            }
+        </script>
         
         
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

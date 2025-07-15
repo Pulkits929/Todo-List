@@ -10,7 +10,8 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/todo");
 
 const trySchema = new mongoose.Schema({
-    name : String
+    name : String,
+    priority : String
 });
 
 const item = mongoose.model("task", trySchema);
@@ -22,8 +23,8 @@ const item = mongoose.model("task", trySchema);
 
 app.get("/",function(req,res){
     item.find().then(data=>{
-        console.log("data fetched successfully!!");
-        res.render("list",{ejes : data});
+        
+        res.render("list", { ejes: data });
     }).catch(err =>{
     console.log("error:",err);
     });
@@ -31,8 +32,10 @@ app.get("/",function(req,res){
 
 app.post("/",function(req,res){
     const itemName = req.body.ele1;
+    const itemPriority = req.body.priority;
     const todo4 = new item({
-        name : itemName
+        name : itemName,
+        priority : itemPriority
     })
     todo4.save();
     res.redirect("/");
@@ -50,6 +53,20 @@ app.post("/delete",function(req,res){
         res.status(500).send("Failed to delete item.");
     })
 
+})
+
+app.post("/update",function(req,res){
+    const value = req.body.task_edit_btn;
+    const updated_value = req.body.task_edit;
+
+    item.updateOne({_id : value},{$set: {name:updated_value}}).then(result=>{
+        console.log("Task updated!!!");
+        res.redirect("/");
+    })
+    .catch(err => {
+        console.error(err);
+        res.send("Error updating task");
+    });
 })
 
 app.listen("3000",function(){
