@@ -1,5 +1,6 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+require("dotenv").config();
 
 var app = express();
 app.set("view engine","ejs");
@@ -7,8 +8,13 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/todo");
+require("dotenv").config();
 
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+  
 const trySchema = new mongoose.Schema({
     name : String,
     priority : String
@@ -17,9 +23,9 @@ const trySchema = new mongoose.Schema({
 const item = mongoose.model("task", trySchema);
 
 
-// todo1.save();
 // todo2.save();
 // todo3.save();
+
 
 app.get("/",function(req,res){
     item.find().then(data=>{
