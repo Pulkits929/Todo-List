@@ -1,0 +1,6 @@
+/* big tablets 1024px to 1200px */
+@media only screen and (max-width: 450px) {
+    .box{
+        width: 100%;
+    }
+}
