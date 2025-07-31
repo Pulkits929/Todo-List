@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <title>To Do</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
         <link rel="stylesheet" href="css/style.css">
@@ -23,13 +24,15 @@
                     <div class="item-row border-bottom">
                         <form action="/update" method="post">
                         <div class="item-row">
-                            <input type="checkbox" id="task-checkbox"  class="task-checkbox" >
-                            <p id="task-text" class="task-text"><%= Item.name %></p>
-
-                            <input class="task-edit" name="task_edit" type="text" placeholder="<%= Item.name %>" style="display: none;" required>
-                            <button class="task_edit_btn" name="task_edit_btn" value="<%= Item._id %>" type="submit" style="display: none;" onclick="toggleShow(this)">Enter</button>
-
-                            <button id="edit" class="edit" onclick="toggleEdit(this)"><ion-icon name="create-outline"></ion-icon></button>
+                            <div>
+                                <input type="checkbox" id="task-checkbox"  class="task-checkbox" >
+                            </div>
+                            <div>
+                                <p id="task-text" class="task-text"><%= Item.name %></p>
+                                <input class="task-edit" name="task_edit" type="text" placeholder="<%= Item.name %>" style="display: none;" required>
+                                <button class="task_edit_btn" name="task_edit_btn" value="<%= Item._id %>" type="submit" style="display: none;" onclick="toggleShow(this)">Enter</button>
+                                <button id="edit" class="edit" onclick="toggleEdit(this)"><ion-icon name="create-outline"></ion-icon></button>
+                            </div>
                         </div>
                         </form>
 
@@ -46,14 +49,19 @@
             
             <form action="/" method="post">
                 <div class="adding-task"></div>
-                <input type="text" name="ele1" placeholder="Enter the task..." required>
-                <label for="priority">Select Priority:</label>
+                <div>
+                    <input type="text" name="ele1" placeholder="Enter the task..." required>
+                </div>
+                <div>
+                    <label for="priority">Select Priority:</label>
                 
                 <select name="priority" id="priority" required>
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
                   <option value="High">High</option>
                 </select>
+                </div>
+                
 
                 <button class="submit" type="submit">+</button>
             </div>
