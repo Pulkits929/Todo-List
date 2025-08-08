@@ -1,11 +1,14 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+const methodOverride = require("method-override");
+
 require("dotenv").config();
 
 var app = express();
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
 app.use(express.static('public'));
+app.use(methodOverride("_method"));
 
 const mongoose = require("mongoose");
 
@@ -51,7 +54,7 @@ app.post("/",function(req,res){
     res.redirect("/");
 })
 
-app.post("/delete",function(req,res){
+app.delete("/delete",function(req,res){
     
     const checked = req.body.del_todo;
     
@@ -65,7 +68,7 @@ app.post("/delete",function(req,res){
 
 })
 
-app.post("/update",function(req,res){
+app.put("/update",function(req,res){
     const value = req.body.task_edit_btn;
     const updated_value = req.body.task_edit;
 

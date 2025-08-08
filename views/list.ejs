@@ -22,7 +22,7 @@
             <% ejes.forEach(function(Item){ %>
                 
                     <div class="item-row border-bottom">
-                        <form action="/update" method="post">
+                        <form action="/update?_method=PUT" method="post">
                         <div class="item-row">
                             <div>
                                 <input type="checkbox" id="task-checkbox"  class="task-checkbox" >
@@ -36,7 +36,7 @@
                         </div>
                         </form>
 
-                        <form action="/delete" method="post">
+                        <form action="/delete?_method=DELETE" method="post">
                         <div class="item-row priority-style <%= Item.priority.toLowerCase() %>">
                             <p class="task-text"><%= Item.priority %></p>
                             <button class="del_todo" name="del_todo" value="<%= Item._id %>" type="submit"><ion-icon name="trash-outline"></ion-icon></button>
